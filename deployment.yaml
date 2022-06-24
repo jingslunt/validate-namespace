@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: tls-certs
           secret:
-            secretName: admission-tls
+            secretName: validate-delete-namespace-tls
 ---
 apiVersion: v1
 kind: Service

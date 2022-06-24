@@ -7,12 +7,12 @@ webhooks:
     clientConfig:
       service:
         namespace: default
-        name: admission-server
-        path: "validate/delete-namespace"
+        name: validate-delete-namespace
+        path: "/validate/delete-namespace"
       caBundle: "${CA_BUNDLE}"
     rules:
       - operations:
-          - delete
+          - DELETE
         apiGroups:
           - ""
         apiVersions:
