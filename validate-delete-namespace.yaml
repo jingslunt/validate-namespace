@@ -1,0 +1,22 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: validate-delete-namespace
+webhooks:
+  - name: validate-delete-namespace.default.svc.cluster.local.
+    clientConfig:
+      service:
+        namespace: default
+        name: admission-server
+        path: "validate/delete-namespace"
+      caBundle: "${CA_BUNDLE}"
+    rules:
+      - operations:
+          - delete
+        apiGroups:
+          - ""
+        apiVersions:
+          - "v1"
+        resources:
+          - namespaces
+    failurePolicy: Ignore

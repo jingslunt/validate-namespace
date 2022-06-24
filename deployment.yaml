@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validate-delete-namespace
+  labels:
+    app: validate-delete-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validate-delete-namespace
+  template:
+    metadata:
+      labels:
+        app: validate-delete-namespace
+    spec:
+      containers:
+        - name: server
+          image: douglasmakey/admissioncontroller:latest
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8443
+              scheme: HTTPS
+          ports:
+            - containerPort: 8443
+          volumeMounts:
+            - name: tls-certs
+              mountPath: /etc/certs
+              readOnly: true
+      volumes:
+        - name: tls-certs
+          secret:
+            secretName: admission-tls
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: validate-delete-namespace
+spec:
+  selector:
+    app: validate-delete-namespace
+  ports:
+    - port: 443
+      targetPort: 8443
