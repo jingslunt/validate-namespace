@@ -74,16 +74,6 @@ func (h *admissionHandler) Serve(hook admissioncontroller.Hook) http.HandlerFunc
 			},
 		}
 
-		// set the patch operations for mutating admission
-		if len(result.PatchOps) > 0 {
-			patchBytes, err := json.Marshal(result.PatchOps)
-			if err != nil {
-				log.Error(err)
-				http.Error(w, fmt.Sprintf("could not marshal JSON patch: %v", err), http.StatusInternalServerError)
-			}
-			admissionResponse.Response.Patch = patchBytes
-		}
-
 		res, err := json.Marshal(admissionResponse)
 		if err != nil {
 			log.Error(err)
