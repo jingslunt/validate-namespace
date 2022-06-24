@@ -3,7 +3,7 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name: validate-delete-namespace
 webhooks:
-  - name: validate-delete-namespace.default.svc.cluster.local.
+  - name: validate-delete-namespace.default.svc.cluster.local
     clientConfig:
       service:
         namespace: default
