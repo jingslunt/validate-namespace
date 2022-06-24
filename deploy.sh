@@ -4,7 +4,7 @@ echo "Creating certificates"
 mkdir certs
 openssl req -nodes -new -x509 -keyout certs/ca.key -out certs/ca.crt -subj "/CN=Admission Controller Demo"
 openssl genrsa -out certs/validate-delete-namespace-tls.key 2048
-openssl req -new -key certs/validate-delete-namespace-tls.key -subj "/CN=validate-delete-namespace.default.svc.cluster.local." | openssl x509 -req -CA certs/ca.crt -CAkey certs/ca.key -CAcreateserial -out certs/validate-delete-namespace-tls.crt
+openssl req -new -key certs/validate-delete-namespace-tls.key -subj "/CN=validate-delete-namespace.default.svc.cluster.local" | openssl x509 -req -CA certs/ca.crt -CAkey certs/ca.key -CAcreateserial -out certs/validate-delete-namespace-tls.crt
 
 echo "Creating k8s Secret"
 kubectl create secret tls validate-delete-namespace-tls \
