@@ -8,10 +8,10 @@ import (
 	v1 "k8s.io/api/core/v1"
 )
 
-// NewValidationHook creates a new instance of pods validation hook
+// NewValidationHook delete namespace validation hook
 func NewValidationHook() admissioncontroller.Hook {
 	return admissioncontroller.Hook{
-		Create: validateDelete(),
+		Delete: validateDelete(),
 	}
 }
 
