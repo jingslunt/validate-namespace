@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: registry.cn-hangzhou.aliyuncs.com/coolops/validate-delete-namespace:v1.0.0
+          image: registry.cn-hangzhou.aliyuncs.com/coolops/validate-delete-namespace:latest
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
