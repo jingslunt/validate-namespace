@@ -16,4 +16,4 @@ kubectl create -f deployment.yaml
 
 echo "Creating k8s webhooks for demo"
 CA_BUNDLE=$(cat certs/ca.crt | base64 | tr -d '\n')
-sed -e 's@${CA_BUNDLE}@'"$CA_BUNDLE"'@g' <"webhooks.yaml" | kubectl create -f -
+sed -e 's@${CA_BUNDLE}@'"$CA_BUNDLE"'@g' <"validate-delete-namespace.yaml" | kubectl create -f -
