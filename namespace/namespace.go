@@ -2,6 +2,7 @@ package namespace
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/douglasmakey/admissioncontroller"
 
@@ -20,6 +21,8 @@ func parseNamespace(object []byte) (*v1.Namespace, error) {
 	if err := json.Unmarshal(object, &ns); err != nil {
 		return nil, err
 	}
+
+	log.Println("namespace info.....", ns)
 
 	return &ns, nil
 }
